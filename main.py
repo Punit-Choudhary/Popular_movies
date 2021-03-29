@@ -169,3 +169,98 @@ def export_menu():
         if ch == 4:
             break
 
+# Function to generate Graph menu
+def graph():
+    df = pd.read_csv(csv_file)
+    while True:
+        clear()
+        print("\nGRAPH MENU")
+        print("_" * 100)
+        print("1.  Whole Data LINE Graph")
+        print("2.  Whole Data Bar Graph")
+        print("3.  Whole Data Bar Graph Horizontal")
+        print("4.  Whole Data Scatter Graph")
+        print("5.  Exit to Main menu\n")
+        ch = int(input("Enter your choice: "))
+
+        if ch == 1:
+            g = df.groupby('language')
+            x = df['language'].unique()
+            y = g['language'].count()
+            plt.xticks(rotation = 'vertical')
+            plt.xlabel("Language")
+            plt.ylabel("Total Movies")
+            plt.title("Language wise movies count")
+            plt.grid(True)
+            plt.plot(x, y)
+            plt.show()
+        elif ch == 2:
+            g = df.groupby('language')
+            x = df['language'].unique()
+            y = g['language'].count()
+            plt.xlabel("Language")
+            plt.ylabel("Total Movies")
+            plt.title("Language wise movies count")
+            plt.bar(x, y)
+            plt.grid(True)
+            plt.show()
+        elif ch == 3:
+            g = df.groupby('language')
+            x = df['language'].unique()
+            y = g['language'].count()
+            plt.xlabel("Language")
+            plt.ylabel("Total Movies")
+            plt.title("Language wise movies count")
+            plt.barh(x, y)
+            plt.grid(True)
+            plt.show()
+        elif ch == 4:
+            g = df.groupby('language')
+            x = df['language'].unique()
+            y = g['language'].count()
+            plt.xlabel("Language")
+            plt.ylabel("Total Movies")
+            plt.title("Language wise movies count")
+            plt.grid(True)
+            plt.scatter(x, y)
+            plt.show()
+            wait = show()
+        elif ch == 5:
+            break
+
+
+def main_menu():
+    clear()
+    while True:
+        clear()
+        print("MAIN MENU")
+        print("_" * 100)
+        print()
+        print('''
+              1. Read CSV File
+              2. Data Analysis Menu
+              3. Graph Menu
+              4. Export Data
+              5. Exit
+              ''')
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            read_csv_file()
+            Wait = input()
+        elif choice == 2:
+            data_analysis_menu()
+            Wait = input()
+        elif choice == 3:
+            graph()
+            wait = input()
+        elif choice == 4:
+            export_menu()
+            wait = input()
+        elif choice == 5:
+            break
+    clear()
+
+
+# Calling main function
+main_menu()

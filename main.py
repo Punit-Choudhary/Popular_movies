@@ -99,3 +99,39 @@ def data_analysis_menu():
             df = df.drop(df.index[index_no])
             print(df)
             print('\n\n\nPress any key to continue....')
+            wait  = input()
+        elif ch == 10:
+            index_no = int(input(
+                "Enter the Index number that you want to update: "
+            ))
+            df = df.drop(df.index[index_no])
+            print(df)
+            print("\n\n\nPress any key to continue....")
+            wait = input()
+        elif ch == 11:
+            g = df.sort_values(by = ["vote_average", "vote_count"], ascending = False)
+            clear()
+            print("Top 20 Movies Based on Rating")
+            print("-" * 120)
+            print(g.head(20))
+
+            print("\n\n\nPress any key to continue...")
+            wait = input()
+        elif ch == 12:
+            dfl = df.language.unique()
+            print("Available Languages: ", dfl + '\n\n')
+            langl = input("Enter Language Type: ")
+            dfl = df[df.language == langl]
+            clear()
+            print("Top 20 Movies Based on Rating | Language: ", langl)
+            print("-" * 120)
+            print(dfl.sort_values(by = 'vote_average', ascending = False).head(20))
+            print("\n\n\nPress any key to continue....")
+            wait = input()
+        elif ch == 13:
+            print(df.describe())
+            print("\n\n\nPress any key to continue....")
+            wait  = input()
+        elif ch == 14:
+            break
+

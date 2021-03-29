@@ -135,3 +135,29 @@ def data_analysis_menu():
         elif ch == 14:
             break
 
+# Function to generate Graph menu
+def graph():
+    df = pd.read_csv(csv_file)
+    while True:
+        clear()
+        print("\nGRAPH MENU")
+        print("_" * 100)
+        print("1.  Whole Data LINE Graph")
+        print("2.  Whole Data Bar Graph")
+        print("3.  Whole Data Bar Graph Horizontal")
+        print("4.  Whole Data Scatter Graph")
+        print("5.  Exit to Main menu\n")
+        ch = int(input("Enter your choice: "))
+
+        if ch == 1:
+            g = df.groupby('language')
+            x = df['language'].unique()
+            y = g['language'].count()
+            plt.xticks(rotation = 'vertical')
+            plt.xlabel("Language")
+            plt.ylabel("Total Movies")
+            plt.title("Language wise movies count")
+            plt.grid(True)
+            plt.plot(x, y)
+            plt.show()
+            

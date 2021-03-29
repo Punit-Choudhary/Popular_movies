@@ -160,4 +160,36 @@ def graph():
             plt.grid(True)
             plt.plot(x, y)
             plt.show()
-            
+        elif ch == 2:
+            g = df.groupby('language')
+            x = df['language'].unique()
+            y = g['language'].count()
+            plt.xlabel("Language")
+            plt.ylabel("Total Movies")
+            plt.title("Language wise movies count")
+            plt.bar(x, y)
+            plt.grid(True)
+            plt.show()
+        elif ch == 3:
+            g = df.groupby('language')
+            x = df['language'].unique()
+            y = g['language'].count()
+            plt.xlabel("Language")
+            plt.ylabel("Total Movies")
+            plt.title("Language wise movies count")
+            plt.barh(x, y)
+            plt.grid(True)
+            plt.show()
+        elif ch == 4:
+            g = df.groupby('language')
+            x = df['language'].unique()
+            y = g['language'].count()
+            plt.xlabel("Language")
+            plt.ylabel("Total Movies")
+            plt.title("Language wise movies count")
+            plt.grid(True)
+            plt.scatter(x, y)
+            plt.show()
+            wait = show()
+        elif ch == 5:
+            break

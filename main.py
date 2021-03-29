@@ -135,61 +135,37 @@ def data_analysis_menu():
         elif ch == 14:
             break
 
-# Function to generate Graph menu
-def graph():
+# Function to generate export menu
+def export_menu():
     df = pd.read_csv(csv_file)
     while True:
         clear()
-        print("\nGRAPH MENU")
+        print("\n\nEXPORT MENU")
         print("_" * 100)
-        print("1.  Whole Data LINE Graph")
-        print("2.  Whole Data Bar Graph")
-        print("3.  Whole Data Bar Graph Horizontal")
-        print("4.  Whole Data Scatter Graph")
-        print("5.  Exit to Main menu\n")
+        print()
+        print('''
+              1. CSV File
+              2. Excel File
+              3. MYSQL TABLE
+              3. Exit to Main Menu
+              ''')
         ch = int(input("Enter your choice: "))
 
         if ch == 1:
-            g = df.groupby('language')
-            x = df['language'].unique()
-            y = g['language'].count()
-            plt.xticks(rotation = 'vertical')
-            plt.xlabel("Language")
-            plt.ylabel("Total Movies")
-            plt.title("Language wise movies count")
-            plt.grid(True)
-            plt.plot(x, y)
-            plt.show()
+            df.to_csv(R"D:\Python\March\Popular_movies\newMovies.CSV")
+            print("\n\nCheck your new file 'newMovies.csv' at D:/Python/March/Popular_movies/")
+            wait = input()
         elif ch == 2:
-            g = df.groupby('language')
-            x = df['language'].unique()
-            y = g['language'].count()
-            plt.xlabel("Language")
-            plt.ylabel("Total Movies")
-            plt.title("Language wise movies count")
-            plt.bar(x, y)
-            plt.grid(True)
-            plt.show()
+            df.to_excel(R"D:\Python\March\Popular_movies\newMovies.xlsx")
+            print("\n\nCheck your new file 'newMovies.xlsx' at D:\Python\March\Popular_movies\\")
+            wait = input()
         elif ch == 3:
-            g = df.groupby('language')
-            x = df['language'].unique()
-            y = g['language'].count()
-            plt.xlabel("Language")
-            plt.ylabel("Total Movies")
-            plt.title("Language wise movies count")
-            plt.barh(x, y)
-            plt.grid(True)
-            plt.show()
-        elif ch == 4:
-            g = df.groupby('language')
-            x = df['language'].unique()
-            y = g['language'].count()
-            plt.xlabel("Language")
-            plt.ylabel("Total Movies")
-            plt.title("Language wise movies count")
-            plt.grid(True)
-            plt.scatter(x, y)
-            plt.show()
-            wait = show()
-        elif ch == 5:
+            engine = sqlalchemy.create_engine(
+                "mysql+pymysql://root:@localhost:3306/Punit_Choudhary")
+            df.to_sql(name = 'movies', con = engine,
+                      index = False, if_exists = 'replace')
+            print("\n\nCheck your Database for movies table.....")
+            wait = input()
+        if ch == 4:
             break
+
